@@ -14,6 +14,23 @@ body {
     margin-top: 20px;
 }
 
+.jumbotron2 {
+    background-image: url(../images/seattleMorning3.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: 0 40%;
+    border-top: 2px solid whitesmoke;
+    border-bottom: 2px solid whitesmoke;
+    box-shadow: 1px 1px 2px whitesmoke, 0 0 25px lightgray, 0 0 5px gray;
+    font-family: 'Righteous', cursive;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-right: 20px;
+    text-align: right;
+}
+
+
+
 #get-started:hover {
     background: #023269;
     border: 1px solid rgb(118, 151, 248);
@@ -41,23 +58,44 @@ h1 {
     vertical-align: bottom;
 }
 
-hr {
-display: block;
-margin-top: 0.5em;
-margin-bottom: 0.5em;
-margin-left: auto;
-margin-right: auto;
-border-style: inset;
-border-width: 1px;
-border-color: whitesmoke;
+h4 {
+    color: white;
+    font-weight: bolder;
+    text-shadow: 0 0 3px black, 0 0 30px rgb(82, 177, 240);
+    margin-right: 12%;
+
 }
 
-p {
+
+#about {
     color: whitesmoke;
     background-color: rgb(41, 55, 69);
     border: 1px solid whitesmoke;
     border-radius: 10px;
     box-shadow: 1px 1px 2px whitesmoke, 0 0 25px lightgray, 0 0 5px gray;
     padding: 10px;
-    text-align: center; 
+    text-align: center;
+}
+
+#submit {
+    margin: 10px;
+}
+
+#input-info {
+    /* border: 5px solid red; */
+    color: whitesmoke;
+    /* margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;  */
+    text-align: center;
+    border-top: 2px solid whitesmoke;
+    border-bottom: 2px solid whitesmoke;
+    box-shadow: 1px 1px 2px whitesmoke, 0 0 25px lightgray, 0 0 5px gray;
+    /* width: 80%; */
+
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box
 }
