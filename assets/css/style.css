@@ -1,0 +1,63 @@
+body {
+    background-color: rgb(12, 16, 21);
+}
+
+.jumbotron {
+    background-image: url(../images/seattleMorning.jpg);
+    background-size: cover;
+    background-position: 0 30%;
+    border-top: 2px solid whitesmoke;
+    border-bottom: 2px solid whitesmoke;
+    box-shadow: 1px 1px 2px whitesmoke, 0 0 25px lightgray, 0 0 5px gray;
+    font-family: 'Righteous', cursive;
+    height: 25%;
+    margin-top: 20px;
+}
+
+#get-started:hover {
+    background: #023269;
+    border: 1px solid rgb(118, 151, 248);
+    color: white;
+    cursor: pointer;
+}
+
+#get-started {
+    background-color: gray;
+    border-radius: 5px;
+    color: white;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 40%;
+    margin-right: 40%;
+    width: 20%;
+}
+
+h1 {
+    color: white;
+    font-size: 5rem;
+    font-weight: bolder;
+    padding-top: 150px;
+    text-shadow: 0 0 3px black, 0 0 30px rgb(82, 177, 240);
+    vertical-align: bottom;
+}
+
+hr {
+display: block;
+margin-top: 0.5em;
+margin-bottom: 0.5em;
+margin-left: auto;
+margin-right: auto;
+border-style: inset;
+border-width: 1px;
+border-color: whitesmoke;
+}
+
+p {
+    color: whitesmoke;
+    background-color: rgb(41, 55, 69);
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px whitesmoke, 0 0 25px lightgray, 0 0 5px gray;
+    padding: 10px;
+    text-align: center; 
+}
