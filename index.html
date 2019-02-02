@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<!--Required meta tags-->
+<meta charset="UTF-8">
+    
+<title>Train Schedule</title>
+
+<!--Media Query-->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+ <!--Bootstrap-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!--link CSS  style sheet and other files
+<link rel="stylesheet" type="text/css" href="assets/style.css">-->
+
+<!--Adding JavaScript,google fonts, moments.js,timepicker and Jquery-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" > </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+    <title>Distance Matrix Service</title>
+    <style>
+      
+    </style>
+  </head>
+  <body>
+    <div id="right-panel">
+      <div id="inputs">
+        
+      </div>
+    
+     <container> 
+      <div class="row">
+          <div class="col-md-4 col-md-offset-4">
+            <form class="form-horizontal" role="form">
+              <fieldset>
+      
+                <!-- Form Name -->
+                <legend>Calculate the Commute</legend>
+      
+                <!-- Text input-->
+                <div class="form-group">Starting Address</label>
+                  <div class="body">
+                    <input type="text" id="origin" placeholder="address" class="form-control">
+                  </div>
+                </div>
+
+                <div class="form-group">Destination Address</label>
+                  <div class="body">
+                    <input type="text" id="destination" placeholder="address" class="form-control">
+                  </div>
+                </div>
+
+                <div class="form-group">Departure Time</label>
+                  <div class="body">
+                    <input type="text" id="departure-time" placeholder="Departure time" class="form-control">
+                  </div>
+                </div>
+            
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <div class="pull-right">
+                      <button type="submit" id="submit-directions" class="btn btn-primary">Calculate</button>
+                    </div>
+                  </div>
+                </div>
+      
+              </fieldset> 
+            </form>
+          </div><!-- /.col-lg-12 -->
+      </div><!-- /.row -->
+    </container> 
+      
+    <h2> Results</h2>
+    <div> Results with no traffic: <span id="results"> </span></div>
+    <div> Results with traffic: <span id="results-traffic"></span></div>
+    
+    <script>
+      
+      $(document).ready(function() {
+
+        $("#departure-time").timepicker();       
+
+        var input = document.getElementById('origin');
+
+        $("#submit-directions").on("click", function(){
+          event.preventDefault();
+          //storing and retreiving new directions data
+          
+          var origin = $("#origin").val().trim();
+          var destination = $("#destination").val().trim();
+          var departureTime = $("#departure-time").val().trim();
+          console.log("Getting distances from " + origin + " to " + destination);
+          
+          getDistances(origin, destination);
+        });
+      });
+
+      var service;
+
+        function setupDirections() {
+          service = new google.maps.DistanceMatrixService;
+          console.log("Maps API initialized");
+        
+          var  originInput = document.getElementById('origin');
+          var destinationInput = document.getElementById('destination');
+          autocomplete = new google.maps.places.Autocomplete(originInput, {});
+          autocomplete = new google.maps.places.Autocomplete(destinationInput, {});
+        }
+
+        function getDistances(origin1, destinationA) {
+        service.getDistanceMatrix({
+          origins: [origin1],
+          destinations: [destinationA],
+          travelMode: 'DRIVING',
+          unitSystem: google.maps.UnitSystem.IMPERIAL,
+          drivingOptions: {
+            departureTime: new Date(2019, 02, 14, 7, 0, 0, 0),
+            trafficModel: 'pessimistic'
+          },
+          avoidHighways: false,
+          avoidTolls: false
+        }, function(response, status) {
+          console.log(response);
+          if (status !== 'OK') {
+            alert('Error was: ' + status);
+          } else {
+            var originList = response.originAddresses;
+            var destinationList = response.destinationAddresses;
+            var outputDivTraffic = document.getElementById('results-traffic');
+            var outputDiv = document.getElementById('results');            
+
+            outputDiv.innerHTML = '';
+            outputDivTraffic.innerHTML = '';
+
+            for (var i = 0; i < originList.length; i++) {
+              var results = response.rows[i].elements;
+              for (var j = 0; j < results.length; j++) {
+                
+                outputDiv.innerHTML += originList[i] + ' to ' + destinationList[j] +
+                    ': ' + results[j].distance.text + ' in ' +
+                    results[j].duration.text + '<br>';
+                
+                outputDivTraffic.innerHTML += originList[i] + ' to ' + destinationList[j] +
+                    ': ' + results[j].distance.text + ' in ' +
+                    results[j].duration_in_traffic.text + '<br>';
+              }
+            }
+          }
+        });
+      // }
+        }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAg2hvRFvjT1K7pOD3KAinx-Udn8EJ5KM&callback=setupDirections&libraries=places"></script>
+  
+    </script>
+  </body>
+</html>
