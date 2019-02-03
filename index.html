@@ -102,12 +102,17 @@
         function setupDirections() {
           service = new google.maps.DistanceMatrixService;
           console.log("Maps API initialized");
-        
+          
           var  originInput = document.getElementById('origin');
           var destinationInput = document.getElementById('destination');
           autocomplete = new google.maps.places.Autocomplete(originInput, {});
           autocomplete = new google.maps.places.Autocomplete(destinationInput, {});
-        }
+          }
+
+       //var address = $("#destination").val().trim();
+
+        
+
 
         function getDistances(origin1, destinationA) {
         service.getDistanceMatrix({
@@ -131,6 +136,14 @@
             var outputDivTraffic = document.getElementById('results-traffic');
             var outputDiv = document.getElementById('results');            
 
+          
+        
+        //check for zipcode and save to a variable
+        var addressArr = destinationList.toString().split(',');
+        // Julie, you can call your weather function using the zipcode[0].
+        var zipcode = addressArr[2].match(/\d+/);
+        console.log(zipcode[0]);
+
             outputDiv.innerHTML = '';
             outputDivTraffic.innerHTML = '';
 
@@ -153,7 +166,7 @@
         }
     </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAg2hvRFvjT1K7pOD3KAinx-Udn8EJ5KM&callback=setupDirections&libraries=places"></script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBc1vjFKMeHn1ZPLk6eetWaFFKg2LQWgHk&callback=setupDirections&libraries=places"></script>
   
     </script>
   </body>
